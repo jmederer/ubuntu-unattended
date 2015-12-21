@@ -9,9 +9,7 @@ d-i pkgsel/install-language-support                         boolean     true
 # keyboard selection
 d-i console-setup/ask_detect                                boolean     false
 d-i keyboard-configuration/modelcode                        string      pc105
-d-i keyboard-configuration/layoutcode                       string      us
-d-i keyboard-configuration/variantcode                      string      intl
-d-i keyboard-configuration/xkb-keymap                       select      us(intl)
+d-i keyboard-configuration/layoutcode                       string      de
 d-i debconf/language                                        string      en_US:en
 
 # network settings
@@ -73,49 +71,24 @@ d-i partman-auto-lvm/guided_size                            string      max
 d-i partman-auto-lvm/new_vg_name                            string      vg0
 d-i partman-auto/expert_recipe                              string      \
       boot-swap-var-root ::                                   \
-              256 256 1256 ext4                               \
+              512 256 1256 ext2                               \
                       $primary{ } $bootable{ }                \
                       method{ format } format{ }              \
                       use_filesystem{ } filesystem{ ext4 }    \
                       mountpoint{ /boot }                     \
               .                                               \
-              512 512 1515 linux-swap                         \
+              1024 512 1515 linux-swap                        \
                       $lvmok{ }                               \
                       lv_name{ swap }                         \
                       method{ swap } format{ }                \
               .                                               \
-              2048 2048 12048 etx4                            \
+              20480 2048 22048 ext4                           \
                       $lvmok{ }                               \
                       lv_name{ root }                         \
                       method{ format } format{ }              \
                       use_filesystem{ } filesystem{ ext4 }    \
                       mountpoint{ / }                         \
               .                                               \
-              2048 2048 12048 ext4                            \
-                      $lvmok{ }                               \
-                      lv_name{ usr }                          \
-                      method{ format } format{ }              \
-                      use_filesystem{ } filesystem{ ext4 }    \
-                      mountpoint{ /usr }                      \
-              .                                               \
-              2048 2048 12048 ext4                            \
-                      $lvmok{ }                               \
-                      lv_name{ home }                         \
-                      method{ format } format{ }              \
-                      use_filesystem{ } filesystem{ ext4 }    \
-                      mountpoint{ /home }                     \
-              .                                               \
-              3072 3072 13072 ext4                            \
-                      $lvmok{ }                               \
-                      lv_name{ var }                          \
-                      method{ format } format{ }              \
-                      use_filesystem{ } filesystem{ ext4 }    \
-                      mountpoint{ /var }                      \
-              .                                               \
-              0 1000000000 1000000000 free                    \
-                      $lvmok{ }                               \
-                      lv_name{ tmp }                          \
-              .
 d-i partman-partitioning/confirm_write_new_label            boolean     true
 d-i partman/default_filesystem                              string      ext4
 

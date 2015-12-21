@@ -81,14 +81,14 @@ echo
 echo
 
 # changing bash to zsh
-wget -O /home/$username/.zaliasses 'https://raw.githubusercontent.com/hvanderlaan/zsh/master/.zaliasses' > /dev/null 2>&1
-wget -O /home/$username/.zfunctions 'https://raw.githubusercontent.com/hvanderlaan/zsh/master/.zfunctions' > /dev/null 2>&1
-wget -O /home/$username/.zcolors 'https://raw.githubusercontent.com/hvanderlaan/zsh/master/.zcolors' > /dev/null 2>&1
-wget -O /home/$username/.zcompdump 'https://raw.githubusercontent.com/hvanderlaan/zsh/master/.zcompdump' > /dev/null 2>&1
-wget -O /home/$username/.zprompt 'https://raw.githubusercontent.com/hvanderlaan/zsh/master/.zprompt' > /dev/null 2>&1
-wget -O /home/$username/.zshrc 'https://raw.githubusercontent.com/hvanderlaan/zsh/master/.zshrc' > /dev/null 2>&1
-usermod -s /usr/bin/zsh $username
-chown $username:$username .z*
+#wget -O /home/$username/.zaliasses 'https://raw.githubusercontent.com/hvanderlaan/zsh/master/.zaliasses' > /dev/null 2>&1
+#wget -O /home/$username/.zfunctions 'https://raw.githubusercontent.com/hvanderlaan/zsh/master/.zfunctions' > /dev/null 2>&1
+#wget -O /home/$username/.zcolors 'https://raw.githubusercontent.com/hvanderlaan/zsh/master/.zcolors' > /dev/null 2>&1
+#wget -O /home/$username/.zcompdump 'https://raw.githubusercontent.com/hvanderlaan/zsh/master/.zcompdump' > /dev/null 2>&1
+#wget -O /home/$username/.zprompt 'https://raw.githubusercontent.com/hvanderlaan/zsh/master/.zprompt' > /dev/null 2>&1
+#wget -O /home/$username/.zshrc 'https://raw.githubusercontent.com/hvanderlaan/zsh/master/.zshrc' > /dev/null 2>&1
+#usermod -s /usr/bin/zsh $username
+#chown $username:$username .z*
 
 # remove /dev/mapper/vg0-tmp to give free space to volume group: vg0
 if [ -b /dev/mapper/vg0-tmp ]; then

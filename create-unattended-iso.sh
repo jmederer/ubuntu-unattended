@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+export githuburl=https://github.com/jmederer/ubuntu-unattended
+
 # file names & paths
 tmp="/tmp"  # destination folder to store the final iso file
 
@@ -94,12 +96,13 @@ done
 
 # ask the user questions about his/her preferences
 if ! timezone=`cat /etc/timezone 2> /dev/null`; then
-    timezone="Europe/Amsterdam"
+    timezone="Europe/Berlin"
 fi
 read -ep " please enter your preferred timezone  : " -i $timezone timezone
 read -ep " please enter your preferred hostname  : " -i "ubuntu" hostname
 read -ep " please enter your preferred username  : " -i "`logname`" username
-read -ep " please enter lvm type (guided/expert) : " -i "expert" lvmtype
+#read -ep " please enter lvm type (guided/expert) : " -i "expert" lvmtype
+export lvmtype=expert
 
 # ask user with type of lvm to use
 while true; do
@@ -140,7 +143,7 @@ fi
 # download lvm seed file
 if [[ ! -f $tmp/$seed_file ]]; then
     echo -n " downloading $seed_file: "
-    download "https://github.com/hvanderlaan/ubuntu-unattended/raw/master/$seed_file"
+    download "$githuburl/raw/master/$seed_file"
 fi
 
 # install required packages
@@ -184,7 +187,7 @@ if $autostart ; then
 fi
 
 # set late command
-late_command="chroot /target wget -O /home/$username/init.sh https://github.com/hvanderlaan/ubuntu-unattended/raw/master/init.sh ;\
+late_command="chroot /target wget -O /home/$username/init.sh $githuburl/raw/master/init.sh ;\
     chroot /target chmod +x /home/$username/init.sh ;"
 
 # copy the netson seed file to the iso
