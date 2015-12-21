@@ -66,6 +66,10 @@ sed -i "s@ubuntu.ubuntu@$fqdn@g" /etc/hosts
 sed -i "s@ubuntu@$hostname@g" /etc/hosts
 hostname "$hostname"
 
+# sudo without password
+# 
+sed -i  "s/%sudo.*/%sudo   ALL=NOPASSWD:  ALL/" /etc/sudoers
+
 # update repos
 (apt-get -y update > /dev/null 2>&1) & spinner $! "updating apt repository ..."
 echo
